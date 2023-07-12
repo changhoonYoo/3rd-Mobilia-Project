@@ -1,0 +1,126 @@
+@charset "UTF-8";
+#login_div {
+	border-width: 1px;
+  	border-style: solid;
+  	width: 450px;
+  	margin: auto;
+  	margin-bottom: 50px;
+}
+.login_containers {
+    display: block;
+    margin: 100px auto;
+    text-align: center;
+    width:800px;
+}
+
+.login_containers h2 {
+    font-size: 50px;
+    margin-bottom: 80px;
+}
+
+.login_containers h3 {
+    font-size: 25px;
+}
+
+.loginID,
+.loginPassword {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.input {
+    padding: 5px;
+    width: 300px;
+    line-height: 30px;
+    font-size: 20px;
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 1);
+}
+
+#btn_login{
+	margin-bottom:20px;
+}
+.bt_login {
+	font-size: 20px;
+    padding: 5px;
+    background-color: black;
+    color: white;
+  	border: 2px solid #555555;
+    cursor: pointer;
+    width:300px;
+
+  }
+  
+ .bt_login:hover{
+  background-color: gray;
+  color: black;
+}
+.findid{
+	 font-size: 15px;
+	 margin-top:20px;
+	 cursor: pointer;
+	 background-color: black;
+     color: white;
+     width: 150px;
+     height:50px;
+     margin-left:20px;
+     
+}
+.findid:hover{
+  background-color: gray;
+  color: black;
+}
+
+
+.findpwd{
+	
+	 font-size: 15px;
+	 margin-top:20px;
+}
+.login1{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	border: 1px solid black;
+	padding:20px;
+	text-aligh:center;
+	margin:center;
+	margin-top:30px;
+	margin-bottom:30px;
+}	
+.login2{
+	
+	text-align:center;
+	
+}
+
+.input1{
+	width:300px;
+	height:30px;
+}
+.btn1{
+	background-color:black;
+	color:white;
+	width:100px;
+	height:30px;
+	border-radius: 5px;
+	cursor: pointer
+}
+.btn1:hover{
+	background:gray;
+	
+}
+.login3{
+	margin-top:30px;
+}
+.login4{
+	margin-top:30px;
+	margin:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+.find{
+	color:#0064FF;
+	font-family: cursive; 
+	font-weight:bold;
+}

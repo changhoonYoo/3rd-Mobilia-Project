@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cart">
+	
+	<!-- 장바구니 상품추가 -->
+	<insert id="addCart">
+	 insert into cart(cart_no, m_id, p_no, cart_color, cart_size, amount_count, cart_price, cart_sale_price)
+	 values (cart_no_seq.nextval, #{m_id}, #{p_no}, #{cart_color}, #{cart_size}, #{amount_count}, #{cart_price}, #{cart_sale_price})
+	</insert>
+	
+	<!-- 장바구니에 상품이 있는지 확인 -->
+	<select id="getCartData" resultType="int">
+	 select count(p_no) from cart where m_id=#{m_id} and p_no=#{p_no} and cart_color=#{cart_color} and cart_size=#{cart_size} and order_no = '0'
+	</select>
+	
+	<!-- 장바구니 목록 가져오기 -->
+	<select id="getCartList" resultType="cart">
+	 select c.cart_no, c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
+	 p.p_class, p.p_category, p.p_amount from cart c left outer join product_list p on c.p_no = p.p_no where m_id = #{m_id} and order_no = '0'
+	</select>
+	
+	<!-- 장바구니 목록 삭제 -->
+	<delete id="delCartData">
+	 delete from cart where cart_no=#{cart_no}
+	</delete>
+	
+	<!-- 장바구니 상품 수량 변경 -->
+	<update id="countModifyCart">
+	  update cart set amount_count = #{amount_count}, cart_price = #{price} * #{amount_count}, cart_sale_price = #{sale_price} * #{amount_count} where cart_no = #{cart_no}
+	</update>
+	
+	<!-- 결제완료후 해당상품들 주문숫자로 묶어주기 -->
+	<update id="changeOrderNo">
+	  update cart set order_no = #{order_no}  where cart_no = #{cart_no}
+	</update>
+	
+	<!-- 카트번호를 기준으로 상품번호 가져오기 -->
+	<select id="get_P_No" resultType="cart">
+	  select p_no, amount_count from cart where cart_no = #{cart_no}
+	</select>
+	
+	<!-- 재고수량 감소 -->
+	<update id="p_CountDown">
+	  update product_list set p_amount = p_amount - #{amount_count}, p_sold = p_sold + #{amount_count} where p_no = #{p_no}
+	</update>
+	
+	<insert id="addOrder">
+	 insert into order_list(order_no, m_id, order_name, order_price)
+	 values(#{order_no}, #{m_id}, #{order_name}, #{order_price})
+	</insert>
+</mapper>

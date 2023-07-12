@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+
+/*#wrap{
+	margin-left:auto;
+	margin-right:auto;
+}*/
+@keyframes fadeInDown{ 
+	0% {
+	opacity: 0;
+	transform: translate3d(0, -100%, 0);
+	}
+
+	to {
+	opacity: 1;
+	transform: translateZ(0);
+	}
+
+}
+.star{
+	color:red;
+}
+.title{
+	text-align:center;
+}
+.title h2{
+	position:relative;
+	animation:fadeInDown 1s;
+}
+table{
+	width:995px;
+	margin-left:auto;
+	margin-right:auto;
+	position: relative;
+    /*margin: 10px 0 0;*/
+    border: 1px solid #e8e8e8;
+    border-top: 0;
+    line-height: 1.5;
+}
+table input{
+	height:20px;
+	font-size:15px;
+	font-weight:normal;
+	margin-left:12px; margin-right:10px;
+}
+.sub_title{
+	padding: 50px 0 10px;
+ 	margin-left:323px;
+}
+
+
+th{
+	padding: 11px 0 10px 18px;
+	border:1px solid #e8e8e8;
+	color:black;
+	text-align:left;
+	font-weight:normal;
+	background-color:#f9f9f9;
+}
+td{
+	width:500px;
+	border:1px solid #e8e8e8;
+}
+.all{
+	border-top:1px solid #e8e8e8;
+	padding-top:15px;
+}
+.all{
+	text-align:center;
+}
+.all_box{
+	margin-left:auto;
+	margin-right:auto;
+}
+.a01{
+	margin-left:252px;
+}
+.box1{
+	border:1px solid #e8e8e8;
+	background-color: #f9f9f9;
+	width:995px; height:250px;
+	overflow-y:scroll; margin:0 auto;
+	white-space:pre-line;
+}
+.agree01{
+	margin-left:250px;
+}
+.a02{
+	margin-left:252px;
+}
+.box2{
+	border:1px solid #e8e8e8;
+	background-color: #f9f9f9;
+	width:995px; height:250px;
+	overflow-y:scroll; margin:0 auto;
+	white-space:pre-line;
+}
+.agree02{
+	margin-left:250px;
+}
+@media (min-width: 1920px){
+	.sub_title{
+		 padding: 50px 0 10px;
+		 margin-left:460px;
+	}
+	.agree01{
+		margin-left:440px;
+	}
+	.agree02{
+		margin-left:440px;
+	}
+	.a01{
+		margin-left:440px;
+	}
+	.a02{
+		margin-left:440px;
+	}
+	
+}
+.OK{
+	
+	width:80px; height:30px;
+	font-size:15px;
+	font-weight:bold;
+	color:white;
+	background-color:#616161;
+	text-align:center;
+	margin:15px auto;
+	display:block;
+	cursor:pointer;
+}
+#check_id{
+	width:78px;
+	height:25px;
+	background-color: #f9f9f9;
+	cursor: pointer;
+	border:1px solid #bfbfbf;
+}
+#post{
+	background-color: #f9f9f9;
+	cursor: pointer;
+	border:1px solid #bfbfbf;
+	height:25px;
+	width:110px;
+	margin-top:5px;
+}
+.all_chk{
+	margin-left:250px;
+}
+#check_all{
+	margin_left:250px;
+}
+

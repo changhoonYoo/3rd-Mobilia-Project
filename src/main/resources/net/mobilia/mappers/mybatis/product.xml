@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Product">
+	<select id="list_new" resultType="product">
+		select * from (select * from product_list order by p_no desc) where rownum &lt;=8
+	</select>
+	<select id="list_md" resultType="product">
+		select * from (select * from product_list where p_choice=1 order by p_no desc) where ROWNUM &lt;=8
+	</select>
+	<select id="list_best" resultType="product">
+		select * from (select * from product_list where p_sold &gt;=1 order by p_sold desc) where rownum &lt;=8
+	</select>
+	<select id="list_count" resultType="int">
+		select count(p_no) from product_list where p_class=#{c}
+	</select>
+	<select id="p_list" resultType="product">
+		select * from product_list where p_class=#{c} order by p_no desc
+	</select>
+	<select id="list_count2" resultType="int">
+		select count(p_no) from product_list where p_class=#{c} and p_category=#{state}
+	</select>
+	<select id="p_list2" resultType="product">
+		select * from product_list where p_class=#{c} and p_category=#{state} order by p_no desc
+	</select>
+	<select id="p_list_m" resultType="product">
+		select * from product_list where p_class=#{c}
+		<if test="m == 'new'">
+			order by p_no desc
+		</if>
+		<if test="m == 'low'">
+			order by p_price asc
+		</if>
+		<if test="m == 'high'">
+			order by p_price desc
+		</if>
+		<if test="m == 'best'">
+			order by p_sold desc
+		</if>
+	</select >
+	<select id="p_list_m2" resultType="product">
+		select * from product_list where p_class=#{c} and p_category=#{state}
+		<if test="m == 'new'">
+			order by p_no desc
+		</if>
+		<if test="m == 'low'">
+			order by p_price asc
+		</if>
+		<if test="m == 'high'">
+			order by p_price desc
+		</if>
+		<if test="m == 'best'">
+			order by p_sold desc
+		</if>
+	</select>
+	<select id="p_info" resultType="product">
+		select * from product_list where p_no=#{p_no}
+	</select>
+	
+	<select id="s_list" resultType="product">
+		select * from product_list where p_name like #{p_name}
+	</select>
+	
+	<select id="r_count" resultType="int">
+		select count(p_no) from review_p where p_no=#{p_no}
+	</select>
+	<select id="r_list" resultType="review">
+		select * from (select rownum rNum,p_no,m_id,p_img1,p_name,re_no,re_cont,re_star,re_date
+		from (select * from review_p order by re_no desc)) where rNum &gt;=#{startrow} 
+		and rNum &lt;=#{endrow} and p_no=#{p_no}
+	</select>
+	<insert id="r_in">
+		insert into review_p (p_no,m_id,p_img1,p_name,re_no,re_cont,re_star,re_date) 
+		values(#{p_no},#{m_id},#{p_img1},#{p_name},re_no_seq.nextval,#{re_cont},#{re_star},sysdate)
+	</insert>
+	<select id="r_info" resultType="review">
+		select * from review_p where re_no=#{re_no}
+	</select>
+	<update id="r_edit">
+		update review_p set re_star=#{re_star},re_cont=#{re_cont} where re_no=#{re_no}
+	</update>
+	<delete id="r_del">
+		delete review_p where re_no=#{re_no}
+	</delete>
+	<select id="getMemberNo" resultType="member">
+		select m_no from m_member where m_id= #{id}
+	</select>
+	<insert id="insert_rv">
+		insert into recently_viewed (rv_no,p_no,m_no) values (rv_no_seq.nextval,#{p_no},#{m_no})
+	</insert>
+	<select id="count_rv" resultType="int">
+		select count(m_no) from recently_viewed where m_no=#{m_no}
+	</select>
+	<select id="delRv_no">
+		select min(rv_no) from recently_viewed where m_no=#{m_no}
+	</select>
+	<delete id="del_rv">
+		delete from recently_viewed where rv_no = (select min(rv_no) from recently_viewed where m_no=#{m_no})
+	</delete>
+	<select id="findRv" resultType="int">
+		select count(rv_no) from recently_viewed where m_no=#{m_no} and p_no=#{p_no}
+	</select>
+	<update id="update_rv">
+		update recently_viewed set rv_no=rv_no_seq.nextval where p_no=#{p_no} and m_no=#{m_no}
+	</update>
+	<select id="getRv_list" resultType="rv">
+		select * from recently_viewed where m_no=#{m_no} order by rv_no desc
+	</select>
+	<select id="rv_auth" resultType="cart">
+		select review_authority,order_no from cart where p_no=#{p_no} and m_id=#{m_id} 
+	</select>
+	<select id="rv_auths" resultType="int">
+		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id} and review_authority=1
+	</select>
+	<select id="purchase_his" resultType="int">
+		select count(cart_no) from cart where p_no=#{p_no} and m_id=#{m_id}
+	</select>
+	<select id="getOrderState" resultType="order">
+		select order_state from order_list where order_no=#{order_no}
+	</select>
+</mapper>

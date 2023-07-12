@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="Member">
+ 
+  <select id="m_idcheck" resultType="net.mobilia.vo.MemberVO">
+   select * from m_member where m_id=#{id} and m_state=1
+  </select>
+  
+  <insert id="m_in">
+   insert into m_member (m_no,m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,
+   m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_state,m_date)
+   values(member_no_seq.nextval,#{m_id},#{m_pwd},#{m_name},#{m_post},#{m_roadAddr},#{m_jibunAddr},#{m_detailAddr},#{m_phone01},
+   #{m_phone02},#{m_phone03},#{m_birth01},#{m_birth02},#{m_birth03},#{mail_id},#{mail_domain},1,sysdate)
+  </insert>
+  
+  <select id="m_data" resultType="member">
+   select * from m_member where m_id=#{m_id} and m_state=1
+  </select>
+ 
+  <update id="m_edit">
+   update m_member set m_name=#{m_name}, m_post=#{m_post}, m_roadAddr=#{m_roadAddr}, 
+   m_jibunAddr=#{m_jibunAddr}, m_detailAddr=#{m_detailAddr}, m_phone01=#{m_phone01}, 
+   m_phone02=#{m_phone02}, m_phone03=#{m_phone03}, mail_id=#{mail_id}, mail_domain=#{mail_domain},
+   m_birth01=#{m_birth01}, m_birth02=#{m_birth02}, m_birth03=#{m_birth03} where m_id=#{m_id}
+  </update>
+
+  <update id="changePwd">
+   update m_member set m_pwd=#{m_pwd} where m_no=#{m_no} 
+  </update>
+
+  <update id="m_del">
+   update m_member set m_delcont=#{m_delcont}, m_deldate=sysdate, m_state=2 where m_id=#{m_id}
+  </update>
+  
+  <select id="get_id" resultType="member">
+
+   select * from m_member where m_name = #{m_name} and mail_id=#{mail_id} and mail_domain=#{mail_domain} and m_state=1
+
+  </select>
+  
+  <update id="m_updatePassword">
+   update m_member set m_pwd=#{m_pwd} where m_id=#{m_id}
+  </update>
+  
+  <select id="search_m" resultType="int">
+   select count(m_no) from m_member where m_id=#{m_id} and mail_id=#{mail_id} and mail_domain=#{mail_domain} and m_state=1
+  </select>
+  
+  
+  
+  <select id="getOrderCount" resultType="int">
+   select count(order_no) from order_list where order_state = #{order_state} and m_id = #{m_id}
+  </select>
+  
+  <select id="getOrderList" resultType="order">
+   select * from order_list where order_state = #{order_state} and m_id = #{m_id} order by order_no desc
+  </select>
+  
+  <update id="orderConfirm">
+   update order_list set order_state = 1, order_date = sysdate where order_no =  #{order_no} 
+  </update>
+  <update id="reviewAuthority">
+   update cart set review_authority = 1 where order_no = #{order_no}
+  </update>
+  
+  <select id="getReturnList" resultType="cart">
+   select p_no, amount_count from cart where order_no = #{order_no}
+  </select>
+  
+  <update id="pCountReturn">
+   update product_list set p_amount = p_amount + #{amount_count}, p_sold = p_sold - #{amount_count} where p_no = #{p_no}
+  </update>
+  
+  <update id="orderReturn">
+   update order_list set order_state = -1, order_date = sysdate where order_no = #{order_no}
+  </update>
+  
+  <select id="getOrderDetailList" resultType="cart">
+	 select c.cart_no, c.p_no, c.cart_color, c.cart_size, c.amount_count, c.cart_price, c.cart_sale_price, p.p_name, p.p_before_price, p.p_price, p.p_img1,
+	 p.p_class, p.p_category, p.p_amount from cart c left outer join product_list p on c.p_no = p.p_no where order_no = #{order_no}
+  </select>
+  
+  <!-- 관심상품추가 -->
+	<insert id="addHeart">
+	 insert into heart(like_no ,m_no, p_no)
+	 values (heart_no_seq.nextval, #{m_no}, #{p_no})
+	</insert>
+  <!-- 관심상품 목록 가져오기 -->
+	<select id="getHeartList" resultType="heart">
+	 select * from heart h left outer join product_list p on h.p_no = p.p_no where m_no = #{m_no} 
+	</select>
+  
+  <select id="selectHeart" resultType="int">
+   select count(p_no) from heart where m_no = #{m_no} and p_no = #{p_no}
+  </select>
+  
+  <!-- 관심상품 삭제하기 -->
+  	
+ <delete id="delHeart">
+ 	delete from heart where m_no=#{m_no} and p_no=#{p_no}
+ </delete>
+  
+  <select id="getHeartCount" resultType="int">
+    select count(p_no) from heart where m_no = #{m_no} and p_no = #{p_no}
+  </select>
+  
+</mapper>

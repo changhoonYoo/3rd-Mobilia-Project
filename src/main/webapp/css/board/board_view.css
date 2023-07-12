@@ -1,0 +1,93 @@
+@charset "UTF-8";
+.board-state-button-area{
+	width:1100px; height:30px;
+	float:center;
+	text-align:center;
+	margin-left:auto; margin-right:auto;
+	margin-bottom:-50px;
+	padding:5px;
+}
+.board-state-button-area #state-left{
+	float:left;
+}
+
+.board-state-button-area #state-right{
+	float:right;
+}
+.board-state-button-area input{
+	width:80px; height:30px;
+	background-color:white;
+	border:1px solid black;
+}
+.board-state-button-area input:hover{
+	opacity:0.6;
+	cursor:pointer;
+}
+
+.edit{
+	text-decoration:none;
+	font-size:17px;
+	text-underline-position : under;
+	color:#333;
+	font-weight: bold;
+}
+.edit:hover{
+	color:#39d9c8;
+}
+
+.del{
+	text-decoration:none;
+	font-size:17px;
+	text-underline-position : under;
+	color:#333;
+	font-weight: bold;
+	
+}
+.del:hover{
+	color:#39d9c8;
+}
+.reply-area{
+	float:center;
+	text-align:left;
+	width:1100px; height:auto;
+	margin-left:auto; margin-right:auto;
+	margin-top:100px;
+}
+.reply-area .reply-write-area{
+	width:100%; height:65px;
+	margin-top:20px;
+	display:flex;
+}
+.reply-area .reply-write-area textarea{
+	width:1000px; height:60px;
+	font-size:18px;
+	resize:none;
+}
+.reply-area .reply-write-area #replySubmit, #none{
+	width:100px; height:65px;
+	background-color:grey;
+	border:none;
+	color:white;
+	font-size:15px; font-weight:bold;
+}
+.reply-area .reply-write-area #replySubmit:hover{
+	opacity:0.6;
+	cursor:pointer;
+}
+.reply-area .reply-view-area{
+	border-top:1px solid #bdbbbb;
+	margin-top:80px;
+}
+.reply-area .reply-view-area #name-label{
+	font-size:17px;
+	font-weight:bold;
+}
+.reply-area .reply-view-area #day-label{
+	font-size:14px;
+	colot:grey;
+}
+.reply-area .reply-view-area li{
+	list-style:none;
+	margin-top:40px; margin-bottom:40px;
+	border-bottom:1px solid #bdbbbb;
+}

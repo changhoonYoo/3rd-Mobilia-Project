@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+@keyframes fadeInDown{ 
+   0% {
+   opacity: 0;
+   transform: translate3d(0, -100%, 0);
+   }
+   to {
+   opacity: 1;
+   transform: translateZ(0);
+   }
+}
+.list_wrap{
+	width: 1300px;
+    margin: 0 auto 0;
+    padding: 30px 0 50px;
+    position:relative;
+    letter-spacing: 0px;
+    height:auto;
+}
+.clear{
+	clear:both;
+}
+#list_title{
+	text-align:center;
+	margin-top:180px;
+	margin-bottom: 10px;
+}
+#list_title h1{
+	animation:fadeInDown 1s;
+}
+#list_category{
+	margin:30px 0px 10px 0px;
+	color:#999;
+}
+#list_category a{
+	font-size:16px;
+	margin:0px 30px 0px 30px;
+	text-decoration: none;
+	color:#999;
+}
+#list_category a:hover{
+	color:#333;
+}
+#product_class{
+	position: relative;
+    text-align: right;
+    margin: 50px 0px 20px 0px;
+    padding: 0 0 0 0;
+}
+#product_class p{
+	padding:0px 0px 0px 40px;
+	font-size:15px;
+	float:left;
+	color:#999;
+}
+#product_class ul{
+	display: inline;
+    margin: 0 5px;
+	text-align: right;
+}
+#product_class li{
+	list-style: none;
+	display: inline;
+    padding: 0;
+    margin: 0;
+}
+#product_class_a{
+ 	display: inline-block;
+    padding: 0 15px;
+    margin: 10px 0 24px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: normal;
+    color: #999;
+    vertical-align: top;
+    border-right: 1px solid #ddd;
+    text-decoration: none;
+}
+#product_class_al{
+	display: inline-block;
+    padding: 0 15px;
+    margin: 10px 30px 24px 0px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: normal;
+    color: #999;
+    vertical-align: top;
+    text-decoration: none;
+}
+#product_class li a:hover{
+	color:#333;
+}
+#product_list{
+	position: relative;
+    width: 100%;
+    padding-top:30px;
+    border-top:1px solid #e8e8e8;
+}
+#list_ul{
+	margin:0;
+	padding:0;
+	float:left;
+}
+#list{
+	list-style: none;
+	display:inline-block;
+	padding: 0 0 50px;
+	margin:0 25px 0 0;
+	vertical-align: top;
+}
+
+#list_info{
+	list-style: none;
+	padding:0;
+}
+#list_info a{
+	 text-decoration: none;
+}
+#list_name{
+	margin: 9px 0 4px;
+}
+#list_price{
+	margin:0px 0px 2px 0px;
+}

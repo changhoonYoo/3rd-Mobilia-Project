@@ -1,0 +1,177 @@
+@charset "UTF-8";
+.community-board-area{
+	display:block;
+	float:center;
+	width:1200px;
+	margin-left:auto; margin-right:auto;
+}
+.title-area{
+	float:center;
+	text-align:center;
+}
+.info-text{
+	color:grey;
+	margin-left:150px;
+}
+.info-te{
+	color:grey;
+	margin-left:auto; margin-right:auto;
+}
+@keyframes fadeInDown{ 
+	0% {
+	opacity: 0;
+	transform: translate3d(0, -100%, 0);
+	}
+
+	to {
+	opacity: 1;
+	transform: translateZ(0);
+	}
+
+}
+.title-area h2{
+	margin-top: 80px;
+	position:relative;
+	animation:fadeInDown 1s;
+}
+#write-button{
+	float:right;
+	width:120px; height:30px;
+	border:none;
+	background-color:black; color:white;
+	font-weight:bold; font-size:14px;
+}
+#write-button:hover{
+	cursor:pointer;
+	opacity:0.6;
+}
+.community-select-area{
+	text-align:center;
+	padding:30px;
+	margin-top:40px; margin-bottom:20px;
+	border-bottom: 1px solid #bdbbbb;
+}
+.community-select-area a{
+	text-decoration:none;
+	color:#aba9a9;
+	margin-left:70px; margin-right:70px;
+}
+.community-select-area .now-board-type{
+	color:black;
+	font-weight:bold;
+}
+.community-select-area a:hover{
+	color:black;
+	font-weight:bold;
+}
+.community-find-area{
+	width:1200px; height:30px;
+	float:right; text-align:right;
+	margin-top:40px;
+	margin-right:auto; margin-left:auto;
+}
+.community-find-area select{
+	width:120px; height:30px;
+	font-size:15px;
+}
+.community-find-area #find_name{
+	width:200px; height:30px;
+	font-size:15px;
+}
+.community-find-area #find_button{
+	width:60px; height:30px;
+	background-color:white;
+	border:1px solid gray;
+	font-weight:bold;
+}
+.community-find-area #find_button:hover{
+	opacity:0.6;
+	cursor:pointer;
+}
+.write-list-area{
+	position:relative;
+	border-bottom: 1px solid #bdbbbb;
+	padding:20px;
+	margin-top:80px; margin-bottom:-40px;
+}
+.write-list-area a{
+	color:black;
+	font-weight:bold;
+	text-decoration:none;
+}
+.write-list-area a:hover{
+	opacity:0.7;
+	cursor:pointer;
+}
+.write-list-area label{
+	color:gray;
+	margin-right:10px; margin-left:10px;
+}
+#board-title-area{
+	
+	padding:5px;
+}
+#board-data-area{
+	padding:5px;
+	
+}
+#bList_paging{
+	display:block;
+	padding-top:13px;
+	width:auto; height:50px;
+	float:center;
+	text-align:center;
+	margin-top:50px; margin-bottom:50px;
+	margin-left:auto; margin-right:auto;
+}
+#bList_paging a{
+	font-size:20px; color:black;
+}
+#bList_paging .next-button{
+	text-decoration:none;
+	color:black;
+}
+#bList_paging .next-button:hover{
+	opacity:0.6;
+	text-decoration:under-line;
+}
+
+/* ---------------------자주묻는 질문 적용 css--------------------- */
+.panel-heading {
+  padding: 0;
+	border:0;
+}
+.panel-title>a, .panel-title>a:active{
+	display:block;
+	padding:15px;
+  color:#555;
+  background-color:white;
+  font-size:16px;
+  font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+  word-spacing:3px;
+	text-decoration:none;
+}
+.panel-heading  a:before {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+   transition: all 0.5s;
+}
+.panel-heading.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+} 
+h3{
+	text-align:center;
+}
+#re-img{
+	position: absolute;
+	top:25px; left:200px;
+}
+#lock-img{
+	position:absolute;
+	top:25px; left:173px;
+}

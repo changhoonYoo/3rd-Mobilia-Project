@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+     <settings>
+		<setting name="cacheEnabled" value="false" />
+        <setting name="jdbcTypeForNull" value="NULL"/>
+	 </settings>
+    
+     <typeAliases>
+     <!-- 이 파일의 역할은 데이터 저장빈 클래스 객체 별칭을 관리함으로써 mybatis 매퍼태그 속성에 들어가는 코드를 줄일수 있다. -->
+     
+      <typeAlias type="net.mobilia.vo.MemberVO" alias="member" />
+      <typeAlias type="net.mobilia.vo.ProductVO" alias="product"/>
+      <typeAlias type="net.mobilia.vo.BoardVO" alias="board"/>
+      <typeAlias type="net.mobilia.vo.ReviewVO" alias="review"/>
+      <typeAlias type="net.mobilia.vo.ReplyVO" alias="reply"/>
+      <typeAlias type="net.mobilia.vo.CartVO" alias="cart"/>
+      <typeAlias type="net.mobilia.vo.AdminVO" alias="admin"/>
+      <typeAlias type="net.mobilia.vo.OrderVO" alias="order"/>
+      <typeAlias type="net.mobilia.vo.HeartVO" alias="heart"/>
+      <typeAlias type="net.mobilia.vo.RecentlyViewedVO" alias="rv"/>
+     </typeAliases>
+  </configuration>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.review-data-area{
+	height:140px;
+	border-bottom: 1px solid #bdbbbb;
+	padding:20px;
+	margin-top:100px; margin-bottom:-50px;
+}
+.review-data-area .review-image-area{
+	width:120px; height:auto;
+	float:left; text-align:center;
+	padding:10px;
+	
+}
+.review-data-area .review-image-area .view_product{
+	text-decoration:none;
+	color:grey;
+}
+.review-data-area .review-image-area .view_product:hover{
+	font-weight:bold;
+	color:black;
+}
+.review-data-area .review-left-area{
+	width:auto; height:auto;
+	float:center;
+	
+	margin-left:40px; margint-right:auto;
+}
+.review-data-area .review-left-area .review-data-top{
+	
+	display:inline;
+	
+}

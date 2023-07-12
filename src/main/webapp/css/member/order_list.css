@@ -1,0 +1,63 @@
+@charset "UTF-8";
+#myshop-center #myshop-title-area .info-text{
+	color:grey;
+}
+#myshop-center .select-state{
+	width:1000px;
+	float:center; text-align:center;
+	margin-left:auto; margin-right:auto;
+	margin-top:40px; margin-bottom:20px;
+	padding:30px;
+	border-bottom: 1px solid #bdbbbb;
+}
+#myshop-center .select-state a{
+	text-decoration:none;
+	color:#aba9a9;
+	margin-left:80px; margin-right:80px;
+	font-size:20px;
+}
+#myshop-center .select-state a:hover{
+	color:black;
+	font-weight:bold;
+}
+#myshop-center .select-state .now-order-state{
+	color:black;
+	font-weight:bold;
+}
+#myshop-center .orderlist-table-area{
+	width:1000px;
+	border: 1px solid #bdbbbb;
+	float:center; text-align:center;
+	margin-left:auto; margin-right:auto;
+}
+#myshop-center .orderlist-table-area .order_list-table{
+	border:none;
+}
+.orderlist-table-area .order_list-table thead{
+	height:30px;
+	background-color:#e8e8e8;
+}
+.orderlist-table-area .order_list-table td{
+	font-size:17px;
+	padding:10px;
+}
+.orderlist-table-area .order_list-table a{
+	color:grey; text-decoration:none;
+}
+.orderlist-table-area .order_list-table a:hover{
+	cursor:pointer;
+	color:black; font-weight:bold;
+}
+.orderlist-table-area .order_list-table .confirmBtn{
+	width:120px; height:25px;
+	background-color:black; color:white;
+}
+.orderlist-table-area .order_list-table .returnBtn{
+	width:120px; height:25px;
+	margin-top:10px;
+	background-color:white; border: 1px solid grey;
+}
+.orderlist-table-area .order_list-table .confirmBtn:hover
+,.orderlist-table-area .order_list-table .returnBtn:hover{
+	cursor:pointer; opacity:0.6;
+}

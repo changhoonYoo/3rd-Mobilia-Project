@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Admin">
+
+	<select id="ad_p_count" resultType="int">
+		select count(p_no) from product_list
+		<where>
+			<if test="find_field ==''"></if>
+			<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='p_class'">
+				p_class like #{find_name}
+			</if>
+			<if test="find_field=='p_category'">
+				p_category like #{find_name}
+			</if>
+			<if test="find_field=='p_amount'">
+				p_amount = 0
+			</if>
+			<if test="find_field=='p_choice'">
+				p_choice = 1
+			</if>
+		</where>
+	</select>
+	
+	<select id="ad_p_list" resultType="product">
+		select * from (
+		select rowNum rNum, p_no, p_name, p_before_price, p_price, p_amount, p_sold, p_img1, p_img2,
+		p_choice,p_class,p_category,p_info,p_color,p_size,p_date
+		from (select * from product_list
+		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='p_class'">
+				p_class like #{find_name}
+			</if>
+			<if test="find_field=='p_category'">
+				p_category like #{find_name}
+			</if>
+			<if test="find_field=='p_amount'">
+				p_amount = 0
+			</if>
+			<if test="find_field=='p_choice'">
+				p_choice = 1
+			</if>
+       </where>
+       order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+	
+
+	<select id="ad_m_count" resultType="int">
+		select count(m_no) from m_member
+		<where>
+			<if test="find_field ==''"></if>
+			<if test="find_field =='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='m_name'">
+				m_name like #{find_name}
+			</if>
+			<if test="find_field=='m_state'">
+				m_state like #{find_name}
+			</if>
+		</where>
+	</select>
+	
+	<select id="ad_m_list" resultType="member">
+		select * from (
+		select rowNum rNum, m_no,m_id,m_pwd,m_name,m_post,m_roadAddr,m_jibunAddr,m_detailAddr,
+        m_phone01,m_phone02,m_phone03,m_birth01,m_birth02,m_birth03,mail_id,mail_domain,m_state,m_date,m_delcont,m_deldate
+		from (select * from m_member
+		<where>
+        	<if test="find_field =='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='m_name'">
+				m_name like #{find_name}
+			</if>
+			<if test="find_field=='m_state'">
+				m_state like #{find_name}
+			</if>
+       </where>
+       order by m_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+	<insert id="ad_p_in">
+		<if test="p_choice == 1">
+			insert into product_list(p_no,p_name,p_before_price,p_price,p_amount,p_img1,p_img2
+						,p_choice,p_class,p_category,p_info,p_color,p_size,p_date) 
+						values(product_no_seq.nextval,#{p_name},#{p_before_price},#{p_price}
+						,#{p_amount},#{p_img1},#{p_img2},#{p_choice},#{p_class},#{p_category},#{p_info}
+						,#{p_color},#{p_size},sysdate)
+		</if>
+		<if test="p_choice == 0">
+			insert into product_list(p_no,p_name,p_before_price,p_price,p_amount,p_img1,p_img2
+						,p_class,p_category,p_info,p_color,p_size,p_date) 
+						values(product_no_seq.nextval,#{p_name},#{p_before_price},#{p_price}
+						,#{p_amount},#{p_img1},#{p_img2},#{p_class},#{p_category},#{p_info}
+						,#{p_color},#{p_size},sysdate)
+		</if>
+	</insert>
+
+	<select id="ad_p_get" resultType="product">
+		select * from product_list where p_no=#{p_no}
+	</select>
+	
+	<update id="ad_p_update">
+		update product_list set p_name=#{p_name}, p_before_price=#{p_before_price}, p_price=#{p_price}
+			,p_amount=#{p_amount}, p_img1=#{p_img1}, p_img2=#{p_img2}, p_choice=#{p_choice}
+			,p_class=#{p_class}, p_category=#{p_category}, p_info=#{p_info}, p_color=#{p_color}
+			,p_size=#{p_size} where p_no=#{p_no}
+	</update>
+	
+	<delete id="ad_p_del">
+		delete from product_list where p_no= #{p_no}
+	</delete>
+	
+	<select id="ad_m_get" resultType="int">
+	 	select m_no from m_member where m_id=#{m_id} and m_state = 1
+	</select>
+	
+   	<update id="ad_m_del">
+   		update m_member set m_delcont=#{m_delcont} , m_deldate=sysdate, m_state=2 where m_no=#{m_no}
+   	</update>
+   
+   	<select id="ad_r_count" resultType="int">
+   		select count(re_no) from review_p
+   		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='re_star'">
+				re_star like #{find_name}
+			</if>
+       </where>
+   	</select>
+   	
+   	<select id="ad_r_list" resultType="review">
+   		select * from (
+		select rowNum rNum, p_no, p_name, m_id, p_img1, re_no,
+		re_cont,re_star,re_date
+		from (select * from review_p
+		<where>
+        	<if test="find_field =='p_name'">
+				p_name like #{find_name}
+			</if>
+			<if test="find_field=='m_id'">
+				m_id like #{find_name}
+			</if>
+			<if test="find_field=='re_star'">
+				re_star like #{find_name}
+			</if>
+       </where>
+       order by p_no desc)) where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+   	</select>
+   	
+   	<delete id="ad_r_del">
+   		delete from review_p where re_no=#{re_no}
+   	</delete>
+   	
+   	<select id="ad_check" resultType="admin">
+   		select * from admin where admin_id=#{admin_id}
+   	</select>
+   	
+   	<select id="ad_q_count" resultType="int">
+   	 select count(board_no) from board where board_type = 'qna'
+   	  <if test="find_field == 'board_name'">
+   	   and board_name like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_cont'">
+   	   and board_cont like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_title'">
+   	   and board_title like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'reply_cnt'">
+   	   and reply_cnt = 0
+   	  </if>
+   	</select>
+   	
+   	<select id="ad_q_list" resultType="board">
+   	 select * from (
+   	 select rowNum rNum,board_no,board_name,board_title,board_cont,board_date,board_type,reply_cnt
+   	 from (select * from board
+   	 <where>
+   	  <if test="find_field == 'board_name'">
+   	   board_name like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_cont'">
+   	   board_cont like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'board_title'">
+   	   board_title like #{find_name}
+   	  </if>
+   	  <if test="find_field == 'reply_cnt'">
+   	   reply_cnt = 0
+   	  </if>
+   	 </where>
+   	 order by board_no desc)) where rNum &gt;=#{startrow} and rNum &lt;=#{endrow} and board_type = 'qna'
+   	</select>
+</mapper>
